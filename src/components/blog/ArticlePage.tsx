@@ -32,7 +32,13 @@ export function ArticlePage({ article }: ArticlePageProps) {
         </div>
       ) : null}
       <article className="article__body">
-        {article.body ? <p>{article.body}</p> : <p>More details coming soon.</p>}
+        {article.bodyContent ? (
+          article.bodyContent
+        ) : article.body ? (
+          <p>{article.body}</p>
+        ) : (
+          <p>More details coming soon.</p>
+        )}
       </article>
       <div className="blog__actions">
         <Link className="link" href="/blog">Back to blog</Link>

@@ -12,6 +12,8 @@ export type Service = {
   cta?: string;
 };
 
+import type { ReactNode } from 'react';
+
 export type Article = {
   id: string;
   title: string;
@@ -19,6 +21,7 @@ export type Article = {
   imageAlt: string;
   heroImage?: string;
   body?: string;
+  bodyContent?: ReactNode;
 };
 
 export type SiteContent = {
