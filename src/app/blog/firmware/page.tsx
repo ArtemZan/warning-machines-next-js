@@ -3,6 +3,12 @@ import { getArticleById } from '@/lib/content';
 
 export const dynamic = 'force-static';
 
+const article = getArticleById('firmware');
+
+export const metadata = {
+  title: article?.headTitle || article?.title || 'Blog',
+};
+
 function FirmwareContent() {
   return (
     <>

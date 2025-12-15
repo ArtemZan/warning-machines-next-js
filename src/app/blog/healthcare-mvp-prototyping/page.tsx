@@ -3,6 +3,12 @@ import { getArticleById } from '@/lib/content';
 
 export const dynamic = 'force-static';
 
+const article = getArticleById('healthcare-mvp-prototyping');
+
+export const metadata = {
+  title: article?.headTitle || article?.title || 'Blog',
+};
+
 function HealthcareMvpContent() {
   return (
     <>

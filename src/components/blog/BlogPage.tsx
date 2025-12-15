@@ -23,7 +23,7 @@ export function BlogPage({ articles }: BlogPageProps) {
             <h3>{article.title}</h3>
             <p>{article.summary}</p>
             <div className="blog__actions">
-              <Link className="link" href={`/blog/${article.id}`}>Read more</Link>
+              <Link className="link" href={`/${article.id}`}>Read more</Link>
             </div>
           </article>
         ))}

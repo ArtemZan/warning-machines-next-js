@@ -17,6 +17,7 @@ import type { ReactNode } from 'react';
 export type Article = {
   id: string;
   title: string;
+  headTitle?: string;
   summary: string;
   imageAlt: string;
   heroImage?: string;
