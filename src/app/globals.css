@@ -880,3 +880,67 @@ h4 {
     margin-left: auto;
   }
 }
+
+/* CTA Banner */
+.cta-banner {
+  position: relative;
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 280px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.cta-banner:hover {
+  transform: scale(1.01);
+}
+
+.cta-banner__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+
+.cta-banner:hover .cta-banner__bg {
+  transform: scale(1.08);
+}
+
+.cta-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.55));
+}
+
+.cta-banner__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem;
+  min-height: 280px;
+  gap: 1.5rem;
+}
+
+.cta-banner__content h3 {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 720px;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .cta-banner__content {
+    padding: 1.5rem;
+  }
+
+  .cta-banner__content h3 {
+    font-size: 1.1rem;
+  }
+}
