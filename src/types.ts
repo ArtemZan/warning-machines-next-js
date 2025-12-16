@@ -38,6 +38,10 @@ export type ContactPayload = {
   email: string;
   message: string;
   agreement: boolean;
+  number?: string;
+  service?: string;
+  uploadNames?: string[];
+  recaptchaToken?: string;
 };
 
 export type ContactResponse =

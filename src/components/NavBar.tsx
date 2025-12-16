@@ -2,15 +2,26 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import type { MouseEvent as ReactMouseEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+
+const services = [
+  { label: 'Injection Moulding Service', href: '/injection-moulding-service' },
+  { label: '3D Printing Service', href: '/services/3d-printing-service' },
+  { label: 'CNC Machining Service', href: '/cnc-machining-service' },
+  { label: 'Hardware design', href: '/hardware-design' },
+  { label: 'PCB and Firmware', href: '/pcb-and-firmware' },
+  { label: 'Pre Certification Testing', href: '/pre-certification-testing' },
+  { label: 'Software Design', href: '/software-design' },
+];
 
 export function NavBar() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handler = (event: MouseEvent) => {
@@ -22,16 +33,6 @@ export function NavBar() {
     return () => document.removeEventListener('click', handler as unknown as EventListener);
   }, []);
 
-  const handleScrollToContact = (event: ReactMouseEvent<HTMLElement>) => {
-    event.preventDefault();
-    const contact = document.getElementById('contact');
-    if (contact) {
-      contact.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      router.push('/#contact');
-    }
-    setMenuOpen(false);
-  };
 
   const displayName = user?.name || 'Account';
 
@@ -41,14 +42,53 @@ export function NavBar() {
         <Link href="/" className="nav__logo">warning-machines.com</Link>
       </div>
       <nav className="nav__links" aria-label="Primary">
-        <Link href="/#services">Services</Link>
-        <Link href="/#process">Process</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/#contact" onClick={handleScrollToContact}>Quote Form</Link>
+        <div
+          className="nav__item nav__item--has-submenu"
+          onMouseEnter={() => {
+            if (servicesTimer.current) clearTimeout(servicesTimer.current);
+            setServicesOpen(true);
+          }}
+          onMouseLeave={() => {
+            if (servicesTimer.current) clearTimeout(servicesTimer.current);
+            servicesTimer.current = setTimeout(() => setServicesOpen(false), 150);
+          }}
+        >
+          <button
+            type="button"
+            className="nav__link nav__link--trigger"
+            aria-haspopup="true"
+            aria-expanded={servicesOpen}
+            onClick={() => router.push('/services')}
+          >
+            Services
+            <span className="nav__caret" aria-hidden="true">▼</span>
+          </button>
+          <div
+            className={`nav__submenu ${servicesOpen ? 'is-open' : ''}`}
+            role="menu"
+            onMouseEnter={() => {
+              if (servicesTimer.current) clearTimeout(servicesTimer.current);
+              setServicesOpen(true);
+            }}
+            onMouseLeave={() => {
+              if (servicesTimer.current) clearTimeout(servicesTimer.current);
+              servicesTimer.current = setTimeout(() => setServicesOpen(false), 150);
+            }}
+          >
+            {services.map((item) => (
+              <Link key={item.href} href={item.href} className="nav__submenu-link" role="menuitem">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <Link href="/#process" className="nav__link">Process</Link>
+        <Link href="/blog" className="nav__link">Blog</Link>
+        <Link href="/quote-form" className="nav__link">Quote Form</Link>
         {!user ? (
           <>
-            <Link href="/login">Login</Link>
-            <Link href="/signup">Sign up</Link>
+            <Link href="/login" className="nav__link">Login</Link>
+            <Link href="/signup" className="nav__link">Sign up</Link>
           </>
         ) : null}
       </nav>
@@ -66,7 +106,7 @@ export function NavBar() {
             ) : null}
           </div>
         ) : null}
-        <Link className="button button--primary" href="/#contact" onClick={handleScrollToContact}>Get a quote</Link>
+        <Link className="button button--primary" href="/quote-form">Get a quote</Link>
       </div>
     </header>
   );
