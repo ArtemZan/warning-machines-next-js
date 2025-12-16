@@ -12,9 +12,9 @@ export function Footer() {
           </p>
         </div>
         <div className="footer__links">
-          <Link href="/#services">Services</Link>
-          <Link href="/#articles">Blog</Link>
-          <Link href="/#contact">Quote Form</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/blog">Blog</Link>
+          <Link href="/quote-form">Quote Form</Link>
         </div>
         <div className="footer__social">
           <a
