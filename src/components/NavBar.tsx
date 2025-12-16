@@ -85,6 +85,7 @@ export function NavBar() {
         <Link href="/#process" className="nav__link">Process</Link>
         <Link href="/blog" className="nav__link">Blog</Link>
         <Link href="/quote-form" className="nav__link">Quote Form</Link>
+        <Link href="/about-us" className="nav__link">About Us</Link>
         {!user ? (
           <>
             <Link href="/login" className="nav__link">Login</Link>
