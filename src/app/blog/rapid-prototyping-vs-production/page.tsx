@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('rapid-prototyping-vs-production');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'rapid-prototyping-vs-production') : {};
 
 function RapidVsProductionContent() {
   return (
@@ -41,7 +41,17 @@ function RapidVsProductionContent() {
 }
 
 export default function RapidPrototypingVsProductionPage() {
-  const article = getArticleById('rapid-prototyping-vs-production');
-  return <ArticlePage article={article ? { ...article, bodyContent: <RapidVsProductionContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'rapid-prototyping-vs-production') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-rapid-prototyping-vs-production" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <RapidVsProductionContent /> } : undefined} />
+    </>
+  );
 }
 

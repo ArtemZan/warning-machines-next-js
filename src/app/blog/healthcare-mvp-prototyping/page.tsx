@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('healthcare-mvp-prototyping');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'healthcare-mvp-prototyping') : {};
 
 function HealthcareMvpContent() {
   return (
@@ -293,7 +293,17 @@ function HealthcareMvpContent() {
 }
 
 export default function HealthcareMvpPage() {
-  const article = getArticleById('healthcare-mvp-prototyping');
-  return <ArticlePage article={article ? { ...article, bodyContent: <HealthcareMvpContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'healthcare-mvp-prototyping') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-healthcare-mvp-prototyping" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <HealthcareMvpContent /> } : undefined} />
+    </>
+  );
 }
 

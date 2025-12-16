@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('cnc-machines-vs-3d-printer');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'cnc-machines-vs-3d-printer') : {};
 
 function CncVs3dContent() {
   return (
@@ -78,7 +78,17 @@ function CncVs3dContent() {
 }
 
 export default function CncVs3dPage() {
-  const article = getArticleById('cnc-machines-vs-3d-printer');
-  return <ArticlePage article={article ? { ...article, bodyContent: <CncVs3dContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'cnc-machines-vs-3d-printer') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-cnc-machines-vs-3d-printer" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <CncVs3dContent /> } : undefined} />
+    </>
+  );
 }
 

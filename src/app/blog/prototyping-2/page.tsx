@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('prototyping-2');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'prototyping-2') : {};
 
 function Prototyping2Content() {
   return (
@@ -33,7 +33,17 @@ function Prototyping2Content() {
 }
 
 export default function Prototyping2Page() {
-  const article = getArticleById('prototyping-2');
-  return <ArticlePage article={article ? { ...article, bodyContent: <Prototyping2Content /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'prototyping-2') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-prototyping-2" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <Prototyping2Content /> } : undefined} />
+    </>
+  );
 }
 

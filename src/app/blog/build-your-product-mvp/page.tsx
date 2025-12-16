@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('build-your-product-mvp');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'build-your-product-mvp') : {};
 
 function BuildYourProductMvpContent() {
   return (
@@ -80,7 +80,17 @@ function BuildYourProductMvpContent() {
 }
 
 export default function BuildYourProductMvpPage() {
-  const article = getArticleById('build-your-product-mvp');
-  return <ArticlePage article={article ? { ...article, bodyContent: <BuildYourProductMvpContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'build-your-product-mvp') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-build-your-product-mvp" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <BuildYourProductMvpContent /> } : undefined} />
+    </>
+  );
 }
 

@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('low-volume-manufacturing');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'low-volume-manufacturing') : {};
 
 function LowVolumeManufacturingContent() {
   return (
@@ -43,7 +43,17 @@ function LowVolumeManufacturingContent() {
 }
 
 export default function LowVolumeManufacturingPage() {
-  const article = getArticleById('low-volume-manufacturing');
-  return <ArticlePage article={article ? { ...article, bodyContent: <LowVolumeManufacturingContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'low-volume-manufacturing') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-low-volume-manufacturing" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <LowVolumeManufacturingContent /> } : undefined} />
+    </>
+  );
 }
 

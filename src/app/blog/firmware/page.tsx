@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('firmware');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'firmware') : {};
 
 function FirmwareContent() {
   return (
@@ -162,7 +162,17 @@ function FirmwareContent() {
 }
 
 export default function FirmwarePage() {
-  const article = getArticleById('firmware');
-  return <ArticlePage article={article ? { ...article, bodyContent: <FirmwareContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'firmware') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-firmware" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <FirmwareContent /> } : undefined} />
+    </>
+  );
 }
 

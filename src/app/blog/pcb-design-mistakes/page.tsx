@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('pcb-design-mistakes');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'pcb-design-mistakes') : {};
 
 function PcbDesignMistakesContent() {
   return (
@@ -135,8 +135,17 @@ function PcbDesignMistakesContent() {
 }
 
 export default function PcbDesignMistakesPage() {
-  const article = getArticleById('pcb-design-mistakes');
-  console.log("Article:", article);
-  return <ArticlePage article={article ? { ...article, bodyContent: <PcbDesignMistakesContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'pcb-design-mistakes') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-pcb-design-mistakes" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <PcbDesignMistakesContent /> } : undefined} />
+    </>
+  );
 }
 

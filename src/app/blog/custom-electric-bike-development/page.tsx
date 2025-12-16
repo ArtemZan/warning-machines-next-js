@@ -1,13 +1,13 @@
+import Script from 'next/script';
 import { ArticlePage } from '@/components/blog/ArticlePage';
 import { getArticleById } from '@/lib/content';
+import { buildArticleJsonLd, buildArticleMetadata } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
 const article = getArticleById('custom-electric-bike-development');
 
-export const metadata = {
-  title: article?.headTitle || article?.title || 'Blog',
-};
+export const metadata = article ? buildArticleMetadata(article, 'custom-electric-bike-development') : {};
 
 function CustomElectricBikeContent() {
   return (
@@ -228,6 +228,17 @@ function CustomElectricBikeContent() {
 }
 
 export default function CustomElectricBikeDevelopmentPage() {
-  return <ArticlePage article={article ? { ...article, bodyContent: <CustomElectricBikeContent /> } : undefined} />;
+  const jsonLd = article ? buildArticleJsonLd(article, 'custom-electric-bike-development') : null;
+
+  return (
+    <>
+      {jsonLd ? (
+        <Script id="ldjson-custom-electric-bike-development" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+      ) : null}
+      <ArticlePage article={article ? { ...article, bodyContent: <CustomElectricBikeContent /> } : undefined} />
+    </>
+  );
 }
 
