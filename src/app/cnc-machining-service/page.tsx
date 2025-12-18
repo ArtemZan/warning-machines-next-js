@@ -27,7 +27,6 @@ export const metadata: Metadata = {
       'At Warning Machines, our CNC Machining Service transforms solid blocks and rods of metal or plastic into precise, repeatable parts. Using advanced computer',
     url: canonicalUrl,
     siteName: 'Warning Machines',
-    updatedTime: '2025-09-22T10:28:03+00:00',
     images: [
       {
         url: ogImage,

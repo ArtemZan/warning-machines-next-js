@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     description: '3D printing, CNC machining & PCB prototyping under one roof turn CAD files into production-ready parts in 30 days or less',
     url: canonicalUrl,
     siteName: 'Warning Machines',
-    updatedTime: '2025-08-27T10:45:46+00:00',
     images: [
       {
         url: ogImage,

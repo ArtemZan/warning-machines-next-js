@@ -19,7 +19,6 @@ export const metadata: Metadata = {
     siteName: 'Warning Machines',
     title,
     description,
-    updatedTime: '2025-07-15T14:03:44+00:00',
     images: [
       {
         url: ogImage,

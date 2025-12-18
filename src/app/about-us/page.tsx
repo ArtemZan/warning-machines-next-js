@@ -34,7 +34,6 @@ export const metadata: Metadata = {
       'WARNING MACHINES is an engineer-run prototyping and low-volume manufacturing studio. We turn napkin sketches and CAD files into fully functional,',
     url: canonicalUrl,
     siteName: 'Warning Machines',
-    updatedTime: '2025-08-27T10:45:24+00:00',
     images: [
       {
         url: ogImage,

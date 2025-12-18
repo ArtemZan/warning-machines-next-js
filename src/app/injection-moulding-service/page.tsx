@@ -27,7 +27,6 @@ export const metadata: Metadata = {
       'At Warning Machines, we offer a comprehensive and fully integrated injection moulding service that takes your project from initial consultation through to the',
     url: canonicalUrl,
     siteName: 'Warning Machines',
-    updatedTime: '2025-09-22T10:00:48+00:00',
     images: [
       {
         url: ogImage,
