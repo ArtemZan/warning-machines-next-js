@@ -2,7 +2,7 @@ import type { Article, Hero, Service, SiteContent, Slide } from '@/types';
 
 export const hero: Hero = {
   headline: 'From concept to reality',
-  subheadline: 'Let’s bring your machine idea to life today',
+  subheadline: "Let's bring your machine idea to life today",
   ctaPrimary: 'Send',
   ctaSecondary: 'Request demo',
 };
@@ -80,7 +80,7 @@ export const articles: Article[] = [
     heroImage: '/images/articles/prototyping-2.png',
   },
   {
-    id: 'the-ultimate-guide-to-cnc-machining',
+    id: 'guide-to-cnc-machining',
     title: 'The Ultimate Guide to CNC Machining: Precision, Prototyping, and Production',
     headTitle: 'The Ultimate Guide to CNC Machining | Warning Machines',
     summary: 'Comprehensive overview of CNC processes, materials, tolerances, and best practices.',
@@ -96,20 +96,20 @@ export const articles: Article[] = [
     heroImage: '/images/articles/prototyping.png',
   },
   {
-    id: 'elite-cnc-machining-in-30-days',
+    id: 'cnc-machining',
     title: 'World-Class CNC Machining & Rapid Prototyping',
     headTitle: 'Elite CNC Machining in 30 Days | Warning Machines',
-    summary: 'Accelerated CNC programs for production-quality parts in one month.',
-    imageAlt: 'CNC machined metal part',
-    heroImage: '/images/articles/elite-cnc-machining-in-30-days.png',
+    summary: 'Engineer-run CNC machining studio turning CAD concepts into production-ready metal or plastic parts in ≤30 days.',
+    imageAlt: 'Close-up of a titanium impeller being milled at high RPM',
+    heroImage: '/images/articles/cnc-machining.png',
   },
   {
-    id: '3d-printing-rapid-prototyping',
+    id: '3d-printing',
     title: '3D Printing Services: Accelerating Innovation',
-    headTitle: '3D Printing & Rapid Prototyping – Warning Machines',
-    summary: 'How to leverage additive manufacturing for fast iterations and complex geometries.',
-    imageAlt: '3D printed parts on a build plate',
-    heroImage: '/images/articles/3d-printing-rapid-prototyping.png',
+    headTitle: '3D Printing & Rapid Prototyping - Warning Machines',
+    summary: 'Comprehensive guide to professional 3D printing services - from rapid prototyping to production. Learn how additive manufacturing accelerates innovation in medical, automotive, aerospace, and renewable energy industries.',
+    imageAlt: 'Male engineer wearing safety glasses analyzes a complex metal lattice part beside other 3D-printed prototypes in a high-tech additive manufacturing lab with 3D printing technology',
+    heroImage: '/images/articles/3d-printing.png',
   },
   {
     id: 'pcb-developer',
@@ -128,7 +128,7 @@ export const articles: Article[] = [
     heroImage: '/images/articles/low-volume-manufacturing.png',
   },
   {
-    id: 'custom-electric-bike-development',
+    id: 'built-custom-electric-bike',
     title: 'Built a Custom Electric Bike from Scratch',
     headTitle: 'Custom Electric Bike Development | Prototyping under 90 days',
     summary: 'A sprint plan to design, prototype, and validate a custom e-bike in three months.',
@@ -136,7 +136,7 @@ export const articles: Article[] = [
     heroImage: '/images/articles/custom-electric-bike-development.png',
   },
   {
-    id: 'rapid-prototyping-vs-production',
+    id: 'rapid-prototyping',
     title: 'Rapid Prototyping vs Final Production',
     headTitle: 'Rapid Prototyping vs Production | WARNING MACHINES',
     summary: 'When to pivot from prototyping to production, and how processes, cost, and quality differ.',
@@ -152,12 +152,12 @@ export const articles: Article[] = [
     heroImage: '/images/articles/hardware-product-design.png',
   },
   {
-    id: 'robot-development-process',
+    id: 'how-build-a-robot',
     title: 'How Build a Robot from Scratch',
     headTitle: 'Robot Development Process | best Custom Robotics Engineering',
-    summary: 'An end-to-end look at building custom robots, from concept to deployment.',
-    imageAlt: 'Custom robot prototype',
-    heroImage: '/images/articles/robot-development-process.png',
+    summary: 'Complete guide to the robot development process - from concept to production. Learn how WARNING MACHINES transforms robotic ideas into fully functional, production-ready machines.',
+    imageAlt: 'Robot Development',
+    heroImage: '/images/articles/build-robot.png',
   },
 ];
 
@@ -189,4 +189,3 @@ export function getArticleById(id: string): Article | undefined {
 }
 
 export const fallbackContent = siteContent;
-

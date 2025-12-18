@@ -53,20 +53,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Blog articles
+  // Blog articles (using original URLs with /blog prefix)
   const blogArticles = [
     '/blog/firmware',
     '/blog/healthcare-mvp-prototyping',
     '/blog/build-your-product-mvp',
     '/blog/cnc-machines-vs-3d-printer',
-    '/blog/prototyping',
-    '/blog/prototyping-2',
+    '/blog/build-my-idea',
     '/blog/pcb-design-mistakes',
+    '/blog/prototyping-2',
+    '/blog/guide-to-cnc-machining',
+    '/blog/prototyping',
+    '/blog/cnc-machining',
+    '/blog/3d-printing',
     '/blog/pcb-developer',
-    '/blog/hardware-product-design',
     '/blog/low-volume-manufacturing',
-    '/blog/rapid-prototyping-vs-production',
-    '/blog/custom-electric-bike-development',
+    '/blog/built-custom-electric-bike',
+    '/blog/rapid-prototyping',
+    '/blog/hardware-product-design',
+    '/blog/how-build-a-robot',
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
@@ -76,4 +81,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [...staticPages, ...servicePages, ...blogArticles];
 }
-
