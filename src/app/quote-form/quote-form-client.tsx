@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState, type FormEvent } from 'react';
+import { useCallback, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { submitContact } from '@/lib/api';
 
@@ -29,11 +29,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
   const [files, setFiles] = useState<FileList | null>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | undefined>();
-
-  const uploadNames = useMemo(() => {
-    if (!files || !files.length) return undefined;
-    return Array.from(files).map((f) => f.name);
-  }, [files]);
 
   const getRecaptchaToken = useCallback(async () => {
     if (!recaptchaSiteKey) return undefined;
@@ -64,16 +59,23 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
     const recaptchaToken = await getRecaptchaToken();
 
     try {
-      const res = await submitContact({
-        name,
-        email,
-        number,
-        service,
-        message,
-        agreement,
-        uploadNames,
-        recaptchaToken,
-      });
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('number', number);
+      formData.append('service', service);
+      formData.append('message', message);
+      formData.append('agreement', agreement ? 'true' : 'false');
+      if (recaptchaToken) {
+        formData.append('recaptchaToken', recaptchaToken);
+      }
+      if (files?.length) {
+        Array.from(files).forEach((file) => {
+          formData.append('upload', file, file.name);
+        });
+      }
+
+      const res = await submitContact(formData);
 
       if (res.success) {
         setStatus('success');

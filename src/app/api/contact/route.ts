@@ -10,6 +10,11 @@ type ContactRequest = {
   service?: string;
   uploadNames?: string[];
   recaptchaToken?: string;
+  attachments?: {
+    filename: string;
+    content: Buffer;
+    contentType?: string;
+  }[];
 };
 
 type RecaptchaResult =
@@ -57,9 +62,61 @@ async function verifyRecaptcha(token?: string): Promise<RecaptchaResult> {
   }
 }
 
-export async function POST(request: Request) {
+async function parseContactRequest(request: Request): Promise<ContactRequest> {
+  const contentType = request.headers.get('content-type') || '';
+
+  // Handle multipart/form-data (file uploads)
+  if (contentType.toLowerCase().includes('multipart/form-data')) {
+    const form = await request.formData();
+    const uploads: File[] = [];
+
+    const getString = (key: string) => {
+      const val = form.get(key);
+      return typeof val === 'string' ? val : undefined;
+    };
+
+    form.forEach((value, key) => {
+      if (value instanceof File && value.size > 0 && key === 'upload') {
+        uploads.push(value);
+      }
+    });
+
+    const uploadNames = uploads.length ? uploads.map((f) => f.name) : undefined;
+    const attachments =
+      uploads.length > 0
+        ? await Promise.all(
+            uploads.map(async (file) => ({
+              filename: file.name || 'upload',
+              content: Buffer.from(await file.arrayBuffer()),
+              contentType: file.type || undefined,
+            })),
+          )
+        : undefined;
+
+    const agreementRaw = getString('agreement');
+    const agreement = agreementRaw === 'true' || agreementRaw === 'on';
+
+    return {
+      name: getString('name'),
+      email: getString('email'),
+      message: getString('message'),
+      number: getString('number'),
+      service: getString('service'),
+      recaptchaToken: getString('recaptchaToken'),
+      agreement,
+      uploadNames,
+      attachments,
+    };
+  }
+
+  // Fallback to JSON body
   const body = (await request.json().catch(() => ({}))) as ContactRequest;
-  const { name, email, message, agreement, number, service, uploadNames, recaptchaToken } = body;
+  return body;
+}
+
+export async function POST(request: Request) {
+  const body = await parseContactRequest(request);
+  const { name, email, message, agreement, number, service, uploadNames, recaptchaToken, attachments } = body;
 
   if (!name || !email || !message || !agreement) {
     return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
@@ -134,6 +191,7 @@ export async function POST(request: Request) {
         <p>${message.replace(/\n/g, '<br>')}</p>
         <p><small>Received at: ${payload.receivedAt}</small></p>
       `,
+      attachments: attachments?.length ? attachments : undefined,
     });
 
     return NextResponse.json({ success: true, data: payload });

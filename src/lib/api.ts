@@ -12,11 +12,12 @@ export async function fetchContent(): Promise<SiteContent> {
   return res.json() as Promise<SiteContent>;
 }
 
-export async function submitContact(payload: ContactPayload): Promise<ContactResponse> {
+export async function submitContact(payload: ContactPayload | FormData): Promise<ContactResponse> {
+  const isFormData = typeof FormData !== 'undefined' && payload instanceof FormData;
   const res = await fetch(`${API_ROOT}/contact`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    headers: isFormData ? undefined : { 'Content-Type': 'application/json' },
+    body: isFormData ? payload : JSON.stringify(payload),
   });
 
   if (!res.ok) {
