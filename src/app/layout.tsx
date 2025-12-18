@@ -106,6 +106,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://warning-machines.com'),
   title: siteTitle,
   description: siteDescription,
+  icons: {
+    icon: '/images/warning-logo.png',
+    shortcut: '/images/warning-logo.png',
+    apple: '/images/warning-logo.png',
+  },
   alternates: {
     canonical: '/',
   },
