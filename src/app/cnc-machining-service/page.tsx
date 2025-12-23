@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'At Warning Machines, our CNC Machining Service transforms solid blocks and rods of metal or plastic into precise, repeatable parts. Using advanced computer',
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   alternates: {

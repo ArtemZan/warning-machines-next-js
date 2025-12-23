@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'At Warning Machines, we offer a comprehensive and fully integrated injection moulding service that takes your project from initial consultation through to the',
   robots: {
-    index: false,
+    index: true,
     follow: true,
   },
   alternates: {
