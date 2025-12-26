@@ -92,16 +92,15 @@ export default function ServicesPage() {
         <section className="section section--narrow">
           <div className="section__header">
             <h1>Services</h1>
-            <h2 style={{ margin: '0.5rem 0 0' }}>Everything you need to turn an idea into a field-ready product</h2>
+            <p style={{ margin: '0.5rem 0 0' }}>Everything you need to turn an idea into a field-ready product</p>
           </div>
-          <div className="grid" style={{ gap: '1rem', alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          <div style={{ gap: '1rem', alignItems: 'start', display: 'flex', flexDirection: 'column' }}>
+            <h3 style={{ margin: 0 }}>Design-for-Manufacturing (DfM) &amp; Engineering Review</h3>
+
             <div className="card card--article">
-              <div className="card__image" aria-hidden="true">
-                <Image src="/images/services-page/image1.png" alt="DfM review" width={1200} height={900} />
-              </div>
+              <Image src="/images/services/DFM.jpg" alt="DfM review" width={1200} height={400} style={{ objectFit: 'cover' }} />
             </div>
             <div style={{ display: 'grid', gap: '0.5rem' }}>
-              <h3 style={{ margin: 0 }}>Design-for-Manufacturing (DfM) &amp; Engineering Review</h3>
               <p>Before we cut metal or spin a board, our senior engineers run a 360° DfM review:</p>
               <ul>
                 <li>
@@ -123,9 +122,12 @@ export default function ServicesPage() {
         </section >
 
         <Section title="CNC Machining" id="cnc">
+          <div className="card card--article">
+            <Image src="/images/articles/cnc-machining.png" alt="CNC 3-Axis Milling" width={1200} height={400} style={{ objectFit: 'cover' }} />
+          </div>
           <div className="grid" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
             <div>
-              <p>Precision 3-, 4- and 5-axis milling and turning for metals &amp; engineering plastics.</p>
+              <p>Precision 3-axis milling and turning for metals &amp; engineering plastics.</p>
               <div style={{ overflowX: 'auto' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
@@ -149,19 +151,11 @@ export default function ServicesPage() {
                         <strong>±0.01 mm</strong> (±0.0004”)
                       </td>
                     </tr>
-                    <tr>
-                      <td style={{ padding: '0.35rem 0.25rem' }}>Finishes</td>
-                      <td style={{ padding: '0.35rem 0.25rem' }}>Anodising, bead-blast, chem-film, powder-coat</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-            <div className="card card--article">
-              <div className="card__image" aria-hidden="true">
-                <Image src="/images/services-page/image2.png" alt="CNC 5-Axis Milling" width={1200} height={900} />
-              </div>
-            </div>
+
           </div>
         </Section>
 
@@ -210,6 +204,31 @@ export default function ServicesPage() {
           </div>
         </Section>
 
+        <Section title="Firmware development" id="firmware">
+          <div style={{ alignItems: 'start' }}>
+            <div className="card card--article">
+              <div className="card__image" aria-hidden="true">
+                <Image src="/images/services-page/image3.png" alt="FDM & SLA 3D Printing" width={1200} height={900} />
+              </div>
+            </div>
+            <div>
+              <p>We develop firmware for a wide range of microcontrollers and processors.</p>
+              <ul>
+                <li>
+                  ESP32
+                </li>
+                <li>
+                  Raspberry PI
+                </li>
+                <li>
+                  STM32
+                </li>
+              </ul>
+              
+            </div>
+          </div>
+        </Section>
+
         <Section title="System Integration &amp; Functional Prototyping" id="integration">
           <div className="grid" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
             <div className="card card--article">
@@ -236,51 +255,6 @@ export default function ServicesPage() {
               <p>
                 You receive a <strong>ready-to-demo, ready-to-test prototype</strong>—not a kit to build at midnight.
               </p>
-            </div>
-          </div>
-        </Section>
-
-        <Section title="Pilot &amp; Low-Volume Production" id="pilot">
-          <div className="grid" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-            <div className="card card--article">
-              <div className="card__image" aria-hidden="true">
-                <Image
-                  src="/images/services-page/image6.png"
-                  alt="Technician inspecting boxed electronic devices"
-                  width={1200}
-                  height={900}
-                />
-              </div>
-            </div>
-            <div>
-              <p>Need 20, 50, or 200 units for verification builds, beta users, or investor demos?</p>
-              <ul>
-                <li>Dedicated jig &amp; fixture design for repeatability</li>
-                <li>Serialisation, basic traceability, and packaging to your SOP</li>
-                <li>Capacity scaling to <strong>1 000 pcs</strong> without transferring tooling</li>
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        <Section title="Compliance &amp; Documentation" id="compliance">
-          <div className="grid" style={{ alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
-            <div className="card card--article">
-              <div className="card__image" aria-hidden="true">
-                <Image
-                  src="/images/services-page/image7.png"
-                  alt="Team reviewing compliance documentation"
-                  width={1200}
-                  height={900}
-                />
-              </div>
-            </div>
-            <div>
-              <ul>
-                <li>First-Article Inspection (FAI) with CMM report</li>
-                <li>Material certificates, RoHS / REACH statements</li>
-                <li>Optional IQ/OQ support (ISO 13485 &amp; FDA 21 CFR 820 alignment)</li>
-              </ul>
             </div>
           </div>
         </Section>

@@ -12,8 +12,7 @@ const services = [
   { label: 'CAD', href: '/hardware-design' },
   { label: 'Software / Firmware development', href: '/software-design' },
   { label: '3D Printing', href: '/services/3d-printing-service' },
-  { label: 'CNC Machining', href: '/cnc-machining-service' },
-  { label: 'Pre Certification Testing', href: '/pre-certification-testing' },
+  { label: 'CNC Machining', href: '/cnc-machining-service' }
 ];
 
 export function NavBar() {

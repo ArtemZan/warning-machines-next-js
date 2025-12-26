@@ -452,6 +452,11 @@ h4 {
   color: #d7d7d7;
 }
 
+.card--article {
+  padding: 0;
+  overflow: hidden;
+}
+
 .card--article .card__image {
   height: 160px;
   border-radius: 12px;
