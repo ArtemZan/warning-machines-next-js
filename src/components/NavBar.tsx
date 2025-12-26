@@ -8,13 +8,12 @@ import { GoogleSignInButton } from '@/components/GoogleSignInButton';
 import { useGoogleAuth } from './auth/useGoogleAuth';
 
 const services = [
-  { label: 'Injection Moulding Service', href: '/injection-moulding-service' },
-  { label: '3D Printing Service', href: '/services/3d-printing-service' },
-  { label: 'CNC Machining Service', href: '/cnc-machining-service' },
-  { label: 'Hardware design', href: '/hardware-design' },
-  { label: 'PCB and Firmware', href: '/pcb-and-firmware' },
+  { label: 'Electronics', href: '/pcb-and-firmware' },
+  { label: 'CAD', href: '/hardware-design' },
+  { label: 'Software / Firmware development', href: '/software-design' },
+  { label: '3D Printing', href: '/services/3d-printing-service' },
+  { label: 'CNC Machining', href: '/cnc-machining-service' },
   { label: 'Pre Certification Testing', href: '/pre-certification-testing' },
-  { label: 'Software Design', href: '/software-design' },
 ];
 
 export function NavBar() {

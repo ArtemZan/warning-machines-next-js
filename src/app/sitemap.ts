@@ -39,7 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Service pages
   const servicePages = [
-    '/injection-moulding-service',
     '/services/3d-printing-service',
     '/cnc-machining-service',
     '/hardware-design',

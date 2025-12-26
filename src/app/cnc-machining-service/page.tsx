@@ -86,9 +86,9 @@ const processSteps = [
   },
   {
     title: 'CNC Machining in Action',
-    quote: 'Fast, repeatable production using 3-axis and 5-axis milling, plus turning operations.',
+    quote: 'Fast, repeatable production using 3-axis milling, plus turning operations.',
     description:
-      'Your part is machined using our high-performance CNC equipment. We can cut metals (aluminium, stainless steel, titanium, brass) as well as plastics (nylon, Delrin, ABS), delivering precision prototypes or production-grade parts.',
+      'Your part is machined using our high-performance CNC equipment. We can cut metals (aluminium, stainless steel, brass) as well as plastics (nylon, Delrin, ABS), delivering precision prototypes or production-grade parts.',
   },
   {
     title: 'Precision & Surface Finishing',
@@ -112,44 +112,31 @@ const processSteps = [
 
 const materials = [
   {
-    src: 'https://warning-machines.com/wp-content/uploads/2025/09/mmmm.png',
+    src: '/images/services/metal.jpg',
     alt: 'Metals',
     caption: 'Metals',
     description: (
       <>
-        Aluminium, Stainless Steel, Titanium, Brass
+        Aluminium, Stainless Steel, Brass
         <br />✓ High strength &amp; durability
         <br />✓ Excellent for precision parts
-        <br />✓ Ideal for aerospace, automotive &amp; tooling
+        <br />✓ Ideal for everyday user products
       </>
     ),
   },
   {
-    src: 'https://warning-machines.com/wp-content/uploads/2025/09/ppppp.png',
+    src: '/images/services/plastic.png',
     alt: 'Plastics',
     caption: 'Plastics',
     description: (
       <>
-        Nylon, Delrin (POM), ABS
+        Nylon, PLA, PETG, ABS
         <br />✓ Lightweight and versatile
         <br />✓ Cost-effective for prototypes
         <br />✓ Strong machinability for functional parts
       </>
     ),
-  },
-  {
-    src: 'https://warning-machines.com/wp-content/uploads/2025/09/ffff.png',
-    alt: 'Surface Finishing',
-    caption: 'Surface Finishing',
-    description: (
-      <>
-        Anodising, Plating, Bead Blasting
-        <br />✓ Enhanced appearance &amp; protection
-        <br />✓ Smooth surface quality
-        <br />✓ Ready-to-assemble components
-      </>
-    ),
-  },
+  }
 ];
 
 export default function CNCMachiningServicePage() {
@@ -175,20 +162,16 @@ export default function CNCMachiningServicePage() {
             <h2>How Our CNC Process Works</h2>
           </div>
           <div
-            className="grid"
-            style={{ gap: '1.5rem', alignItems: 'start', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
+            style={{ gap: '1.5rem', alignItems: 'start', display: 'flex', flexDirection: 'column' }}
           >
-            <div className="card card--article">
-              <div className="card__image">
-                <Image
-                  src="https://warning-machines.com/wp-content/uploads/2025/09/CNC-Process.jpg"
-                  alt="CNC Process"
-                  width={1200}
-                  height={1200}
-                  unoptimized
-                />
-              </div>
-            </div>
+            <Image
+              src="/images/articles/cnc-machining.png"
+              alt="CNC Process"
+              width={1200}
+              height={400}
+              style={{objectFit: 'cover'}}
+              unoptimized
+            />
             <div>
               {processSteps.map((step, index) => (
                 <details key={step.title} open={index === 0} style={{ marginBottom: '0.75rem' }}>
@@ -219,15 +202,12 @@ export default function CNCMachiningServicePage() {
             <h2>Materials We Machine</h2>
           </div>
           <div
-            className="grid"
-            style={{ gap: '1.5rem', marginTop: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
+            style={{ gap: '1.5rem', marginTop: '1rem', display: 'flex', flexDirection: 'column' }}
           >
             {materials.map((material) => (
-              <div key={material.caption}>
-                <figure className="card card--article" style={{ margin: 0 }}>
-                  <div className="card__image">
-                    <Image src={material.src} alt={material.alt} width={800} height={800} unoptimized />
-                  </div>
+              <div key={material.caption} style={{display: 'flex', gap: '1.5rem'}}>
+                <figure className="card card--article" style={{ margin: 0, minWidth: "70%", objectFit: 'cover'}}>
+                    <Image src={material.src} alt={material.alt} width={500} height={500} style={{ objectFit: 'cover', width: '100%'}} unoptimized />
                   <figcaption className="card__caption">{material.caption}</figcaption>
                 </figure>
                 <p style={{ marginTop: '0.75rem', fontSize: '0.95rem', opacity: 0.9 }}>{material.description}</p>
@@ -246,9 +226,9 @@ export default function CNCMachiningServicePage() {
             />
             <div className="cta-banner__overlay" />
             <div className="cta-banner__content">
-              <h3>CNC Machining Excellence</h3>
-              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>From Idea to Reality in 30 Days</p>
-              <span className="button button--primary">Get a Free Quote</span>
+              <h3>Let's create your prototype</h3>
+              <p style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>From Idea to Reality</p>
+              <span className="button button--primary">Book a meeting</span>
             </div>
           </Link>
         </section>

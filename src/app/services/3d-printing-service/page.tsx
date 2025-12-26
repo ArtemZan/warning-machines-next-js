@@ -88,40 +88,7 @@ const technologies = [
     src: '/images/services/3d-printing/image4.png',
     alt: 'Fused Filament Fabrication (FFF): Cost‑effective solutions for thermoplastic parts.',
     caption: 'Fused Filament Fabrication',
-  },
-  {
-    src: '/images/services/3d-printing/image5.png',
-    alt: 'Metal 3D Printing (DMLS): High-performance metal components with excellent strength-to-weight ratio.',
-    caption: 'Metal 3D Printing',
-  },
-  {
-    src: '/images/services/3d-printing/image6.png',
-    alt: 'Multi Jet Fusion (MJF): For precise, production-quality nylon parts.',
-    caption: 'Multi Jet Fusion',
-  },
-  {
-    src: '/images/services/3d-printing/image7.png',
-    alt: 'PolyJet & Carbon DLS: Elastomers and advanced polymers for functional and flexible parts.',
-    caption: 'PolyJet & Carbon DLS',
-  },
-];
-
-const materials = [
-  {
-    src: '/images/services/3d-printing/image12.png',
-    alt: 'Metals: Aluminum, Stainless Steel, Titanium, Inconel, Cobalt Chrome, Maraging Steel',
-    caption: 'Metals',
-  },
-  {
-    src: '/images/services/3d-printing/image13.png',
-    alt: 'Plastics: ABS, Nylon (PA), Polycarbonate, Polypropylene',
-    caption: 'Plastics',
-  },
-  {
-    src: '/images/services/3d-printing/image14.png',
-    alt: 'Elastomers: TPU, Digital Photopolymers, 3D Printed Silicone',
-    caption: 'Elastomers',
-  },
+  }
 ];
 
 const benefits = [
@@ -215,25 +182,6 @@ export default function PrintingServicePage() {
                 <h4 style={{ margin: '0 0 0.5rem' }}>{benefit.title}</h4>
                 <p style={{ margin: 0, opacity: 0.85 }}>{benefit.description}</p>
               </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section section--narrow">
-          <div className="section__header">
-            <h2>Materials We Work With in 3D Printing</h2>
-          </div>
-          <div
-            className="grid"
-            style={{ gap: '1rem', marginTop: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
-          >
-            {materials.map((material) => (
-              <figure key={material.caption} className="card card--article" style={{ margin: 0 }}>
-                <div className="card__image">
-                  <Image src={material.src} alt={material.alt} width={800} height={452} />
-                </div>
-                <figcaption className="card__caption">{material.caption}</figcaption>
-              </figure>
             ))}
           </div>
         </section>
