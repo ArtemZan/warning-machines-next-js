@@ -2,7 +2,7 @@ import type { Article, Hero, Service, SiteContent, Slide } from '@/types';
 
 export const hero: Hero = {
   headline: 'From concept to reality',
-  subheadline: "Let's bring your machine idea to life today",
+  subheadline: "Let's bring your idea to life",
   ctaPrimary: 'Send',
   ctaSecondary: 'Request demo',
 };

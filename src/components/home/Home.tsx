@@ -1,7 +1,6 @@
 import { Articles } from './Articles';
 import { ContactForm } from './ContactForm';
 import { Hero } from './Hero';
-import { ImageSlider } from './ImageSlider';
 import { LogoStrip } from './LogoStrip';
 import { ServiceGrid } from './ServiceGrid';
 import type { SiteContent } from '@/types';
@@ -13,7 +12,6 @@ export function HomePage(props: {content: SiteContent}) {
         <Hero hero={content.hero} />
         <ServiceGrid />
         <LogoStrip />
-        {content.slides ? <ImageSlider slides={content.slides} /> : null}
         <Articles articles={content.articles} />
         <ContactForm />
     </main>

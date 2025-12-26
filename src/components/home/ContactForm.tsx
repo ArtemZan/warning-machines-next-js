@@ -39,7 +39,7 @@ export function ContactForm() {
     <section className="section section--muted" id="contact">
       <div className="section__header">
         <p className="eyebrow">Quote Form</p>
-        <h2>Let’s bring your machine idea to life</h2>
+        <h2>Let’s bring your idea to life</h2>
         <p className="section__lede">
           Tell us about your project and we’ll respond quickly with next steps.
         </p>

@@ -315,8 +315,25 @@ h4 {
 }
 
 .section__header {
-  max-width: 760px;
   margin-bottom: 32px;
+}
+
+#services .section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#services .section__header h1 {
+  margin: auto;
+  padding: 0 40px;
+  font-family: 'Ethnocentric';
+}
+
+#services .section__header p {
+  font-size: calc(0.5vw + 15px);
 }
 
 .section__header h2,
@@ -395,6 +412,9 @@ h4 {
   position: relative;
   z-index: 1;
   font-weight: 500;
+  font-size: calc(0.5vw + 15px);
+  text-align: center;
+  font-family: 'Ethnocentric';
 }
 
 .chip {
@@ -701,10 +721,11 @@ h4 {
 
 .card--service {
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 20vw;
+  height: 20vw;
   padding: 0;
   border: none;
+  justify-self: center;
 }
 
 .card--service img {
@@ -736,6 +757,7 @@ h4 {
 
 .section#services {
   display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
