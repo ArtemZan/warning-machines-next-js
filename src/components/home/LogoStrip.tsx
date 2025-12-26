@@ -8,6 +8,7 @@ const logos = [
   'shelly.svg',
   'bms.jpg',
   'cinemacity.svg',
+  'Spark Vision'
 ];
 
 export function LogoStrip() {
@@ -16,7 +17,11 @@ export function LogoStrip() {
       <div className="logo-strip">
         {logos.map((src, idx) => (
           <div key={`${src}-${idx}`} className="logo-strip__item">
+            {src.includes(".") ? 
             <img src={`/images/logos/${src}`} alt="Client logo" />
+            :
+            <span style={{color: 'var(--color-primary)'}}>{src}</span>
+            }
           </div>
         ))}
       </div>

@@ -37,7 +37,6 @@ export type ContactPayload = {
   name: string;
   email: string;
   message: string;
-  agreement: boolean;
   number?: string;
   service?: string;
   uploadNames?: string[];

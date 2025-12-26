@@ -39,7 +39,9 @@ export function NavBar() {
   return (
     <header className="nav">
       <div className="nav__brand">
-        <Link href="/" className="nav__logo">warning-machines.com</Link>
+        <Link href="/" style={{display:'flex', alignItems:'center', gap:'10px', fontSize: '1.8rem'}}>
+        <img src="/images/logos/warning.png" alt="Warning Machines" style={{width: '70px'}}/>
+        Warning</Link>
       </div>
       <nav className="nav__links" aria-label="Primary">
         <div
@@ -82,9 +84,7 @@ export function NavBar() {
             ))}
           </div>
         </div>
-        <Link href="/#process" className="nav__link">Process</Link>
         <Link href="/blog" className="nav__link">Blog</Link>
-        <Link href="/quote-form" className="nav__link">Quote Form</Link>
         <Link href="/about-us" className="nav__link">About Us</Link>
         {!user ? (
           <>
@@ -107,7 +107,7 @@ export function NavBar() {
             ) : null}
           </div>
         ) : null}
-        <Link className="button button--primary" href="/quote-form">Get a quote</Link>
+        <Link className="button button--primary" href="/quote-form">Book a meeting</Link>
       </div>
     </header>
   );

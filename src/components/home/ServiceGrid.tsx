@@ -14,22 +14,22 @@ const services = [
     id: 'firmware',
     title: 'Firmware',
     image: 'firmware.jpg'
-  },
-  {
-    id: 'machinery',
-    title: 'Industrial Equipment and Machinery',
-    image: 'machinery.png'
-  },
-  {
-    id: 'hardware',
-    title: 'Automotive and Mobility',
-    image: 'automotive.jpg'
-  },
-  {
-    id: 'electronics',
-    title: 'Electronics and Smart Device',
-    image: 'smart-device.jpg'
-  },
+  }
+  // {
+  //   id: 'machinery',
+  //   title: 'Industrial Equipment and Machinery',
+  //   image: 'machinery.png'
+  // },
+  // {
+  //   id: 'hardware',
+  //   title: 'Automotive and Mobility',
+  //   image: 'automotive.jpg'
+  // },
+  // {
+  //   id: 'electronics',
+  //   title: 'Electronics and Smart Device',
+  //   image: 'smart-device.jpg'
+  // },
 ];
 
 export function ServiceGrid() {
@@ -37,9 +37,9 @@ export function ServiceGrid() {
     <section className="section section--primary" id="services">
       <div className="section__header">
         <p className="eyebrow">Services</p>
-        <h2>Integrated Hardware Development Services</h2>
+        <h2>Hardware Development Services</h2>
         <p className="section__lede">
-        With deep expertise in rapid prototyping, custom PCB development, precision CNC machining and low-volume manufacturing, we provide the essential tools to transform groundbreaking ideas into tangible physical products, serving a diverse array of industries.
+          With deep expertise in rapid prototyping, custom electronics development, precision CNC machining and Firmware/Software development services, we provide the essential tools to transform ideas into physical products, serving a diverse array of industries.
         </p>
       </div>
       <div className="grid grid--services">

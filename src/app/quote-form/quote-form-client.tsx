@@ -17,7 +17,7 @@ declare const grecaptcha:
     }
   | undefined;
 
-const services = ['3d printing', 'CAD', 'Prototyping', 'PCB', 'CNC', '3D Design', 'other'];
+const services = ['3D Printing', 'CAD', 'Prototyping', 'PCB', 'CNC', '3D Design', 'Other'];
 
 export default function QuoteForm({ recaptchaSiteKey }: Props) {
   const [name, setName] = useState('');
@@ -25,7 +25,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
   const [number, setNumber] = useState('');
   const [service, setService] = useState(services[0]);
   const [message, setMessage] = useState('');
-  const [agreement, setAgreement] = useState(false);
   const [files, setFiles] = useState<FileList | null>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | undefined>();
@@ -50,12 +49,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
     setStatus('loading');
     setError(undefined);
 
-    if (!agreement) {
-      setStatus('error');
-      setError('You must agree to the NDA and site policies.');
-      return;
-    }
-
     const recaptchaToken = await getRecaptchaToken();
 
     try {
@@ -65,7 +58,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
       formData.append('number', number);
       formData.append('service', service);
       formData.append('message', message);
-      formData.append('agreement', agreement ? 'true' : 'false');
       if (recaptchaToken) {
         formData.append('recaptchaToken', recaptchaToken);
       }
@@ -84,7 +76,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
         setNumber('');
         setService(services[0]);
         setMessage('');
-        setAgreement(false);
         setFiles(null);
       } else {
         setStatus('error');
@@ -100,10 +91,9 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
     <main className="page-content">
       <section className="section section--narrow">
         <header className="section__header">
-          <h1>Quote Form</h1>
+          <h1>Booking form</h1>
           <p>
-            <strong>Looking for a custom solution for your Projects?</strong> Fill out the form below to receive a
-            tailored quote for your project. Our team will review your request and get back to you within
+            <strong>Looking for engineering services?</strong> Book a meeting with one of our experts and receive guidance. Our team will review your request and get back to you within
             <strong> 24 hours</strong>. Let’s build something powerful together.
           </p>
         </header>
@@ -159,16 +149,6 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
           <label className="field">
             <span>Upload (optional)</span>
             <input name="upload" type="file" multiple onChange={(e) => setFiles(e.target.files)} />
-          </label>
-
-          <label className="checkbox">
-            <input name="nda" type="checkbox" checked={agreement} onChange={(e) => setAgreement(e.target.checked)} required />
-            <span>
-              I agree to the{' '}
-              <Link href="https://warning-machines.com/non-disclosure-agreement-nda-and-site-policies/" target="_blank">
-                NDA and site policies
-              </Link>
-            </span>
           </label>
 
           <div className="form__actions">

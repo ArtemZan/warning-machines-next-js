@@ -5,7 +5,6 @@ type ContactRequest = {
   name?: string;
   email?: string;
   message?: string;
-  agreement?: boolean;
   number?: string;
   service?: string;
   uploadNames?: string[];
@@ -93,8 +92,6 @@ async function parseContactRequest(request: Request): Promise<ContactRequest> {
           )
         : undefined;
 
-    const agreementRaw = getString('agreement');
-    const agreement = agreementRaw === 'true' || agreementRaw === 'on';
 
     return {
       name: getString('name'),
@@ -103,7 +100,6 @@ async function parseContactRequest(request: Request): Promise<ContactRequest> {
       number: getString('number'),
       service: getString('service'),
       recaptchaToken: getString('recaptchaToken'),
-      agreement,
       uploadNames,
       attachments,
     };
@@ -116,9 +112,9 @@ async function parseContactRequest(request: Request): Promise<ContactRequest> {
 
 export async function POST(request: Request) {
   const body = await parseContactRequest(request);
-  const { name, email, message, agreement, number, service, uploadNames, recaptchaToken, attachments } = body;
+  const { name, email, message, number, service, uploadNames, recaptchaToken, attachments } = body;
 
-  if (!name || !email || !message || !agreement) {
+  if (!name || !email || !message) {
     return NextResponse.json({ success: false, error: 'Missing required fields' }, { status: 400 });
   }
 
@@ -133,7 +129,6 @@ export async function POST(request: Request) {
     name,
     email,
     message,
-    agreement: !!agreement,
     number,
     service,
     uploadNames,
@@ -174,7 +169,6 @@ export async function POST(request: Request) {
         `Number: ${number || '-'}`,
         `Service: ${service || '-'}`,
         uploadLine,
-        `Agreement: ${payload.agreement}`,
         '',
         message,
         '',
@@ -186,7 +180,6 @@ export async function POST(request: Request) {
         <p><strong>Number:</strong> ${number || '-'}</p>
         <p><strong>Service:</strong> ${service || '-'}</p>
         <p><strong>Uploads:</strong> ${uploadNames?.length ? uploadNames.join(', ') : 'none'}</p>
-        <p><strong>Agreement:</strong> ${payload.agreement}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <p><small>Received at: ${payload.receivedAt}</small></p>
