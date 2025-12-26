@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { GoogleSignInButton } from '@/components/GoogleSignInButton';
+import { useGoogleAuth } from './auth/useGoogleAuth';
 
 const services = [
   { label: 'Injection Moulding Service', href: '/injection-moulding-service' },
@@ -22,6 +24,8 @@ export function NavBar() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const {handleGoogleCredential} = useGoogleAuth();
 
   useEffect(() => {
     const handler = (event: MouseEvent) => {
@@ -84,14 +88,9 @@ export function NavBar() {
             ))}
           </div>
         </div>
+        <Link href="/products" className="nav__link">Products</Link>
         <Link href="/blog" className="nav__link">Blog</Link>
         <Link href="/about-us" className="nav__link">About Us</Link>
-        {!user ? (
-          <>
-            <Link href="/login" className="nav__link">Login</Link>
-            <Link href="/signup" className="nav__link">Sign up</Link>
-          </>
-        ) : null}
       </nav>
       <div className="nav__actions">
         {user ? (
@@ -106,7 +105,7 @@ export function NavBar() {
               </div>
             ) : null}
           </div>
-        ) : null}
+        ) : <GoogleSignInButton size='medium' theme='filled_black'  onCredential={handleGoogleCredential} text="signin" />}
         <Link className="button button--primary" href="/quote-form">Book a meeting</Link>
       </div>
     </header>

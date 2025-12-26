@@ -153,7 +153,7 @@ export default function QuoteForm({ recaptchaSiteKey }: Props) {
 
           <div className="form__actions">
             <button type="submit" className="button button--primary" disabled={status === 'loading'}>
-              {status === 'loading' ? 'Sending…' : 'Request a Quote'}
+              {status === 'loading' ? 'Sending…' : 'Book a meeting'}
             </button>
             {status === 'success' ? <p className="form__status form__status--ok">Request sent successfully.</p> : null}
             {status === 'error' ? <p className="form__status form__status--error">{error || 'Submission failed.'}</p> : null}

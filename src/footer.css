@@ -40,18 +40,32 @@
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .footer__social a {
-    width: 60px;
-    height: 60px;
-    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     background-color: #FDD200;
     font-size: 1.2rem;
+}
+
+.footer__social a img {
+    width: 60px;
+    height: 60px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #FDD200;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .footer__links {
